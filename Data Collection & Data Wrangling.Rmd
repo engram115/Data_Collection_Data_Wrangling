@@ -1,7 +1,7 @@
 ---
 title: "Data Collection and Data Wrangling"
-author: "Sana Rasheed"
-date: "July 19, 2020"
+author: "Abdul Majid"
+date: "February 2022"
 output: html_document
 ---
 
@@ -25,7 +25,8 @@ library(help='datasets')
 
 
 ```{r }
-USPersonalExpenditure
+
+
 ```
 
 ```{r }
@@ -34,12 +35,24 @@ USPersonalExpenditure
 
 
 ```{r }
-
+USPersonalExpenditure
+var_dataset <- as.data.frame(USPersonalExpenditure)
+for (i in seq_along(1:ncol(USPersonalExpenditure)))
+{
+  avg <- mean(var_dataset[,i])
+  print(paste('Mean of', colnames(USPersonalExpenditure)[i], ' = ', avg))
+  s_deviation <- sd(var_dataset[,i])
+  print(paste('Standard Deviation of ', colnames(USPersonalExpenditure)[i], ' = ', s_deviation))
+}
 ```
 
 
 ```{r }
 
+mean_rows <- rowMeans(var_dataset)
+
+var_dataset$'Average' <- mean_rows
+var_dataset
 ```
 
 
