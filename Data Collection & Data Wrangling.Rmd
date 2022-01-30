@@ -70,12 +70,40 @@ var_dataset
 1. Create a new column containing the average bodywt (body weight) of each genus and of each order.  
 2. Create a dataframe containing the average REM sleep time for each order.  
 3. How many missing values are there (in total) and per column?  
-4. How would you like to impute missing values? Write Justification.  <i> Hint: Overall Mean/media/mode vs. Groupby Mean/media/mode?
+4. How would you like to impute missing values? Write Justification.  <i> Hint: Overall Mean/median/mode vs. Groupby Mean/median/mode?
 
 
 ```{r }
 url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/msleep_ggplot2.csv"
+
 filename <- "msleep_ggplot2.csv"
+
+if(!file.exists(fileName))
+{
+  download.file(url, destfile = "msleep_ggplot2.csv",method = 'libcurl')
+}
+r <- read.csv(filename)
+df <- data.frame(r)
+
+avg_bodywt_genus <- aggregate(df$bodywt, list(df$genus), mean)
+avg_bodywt_genus
+
+avg_bodywt_order <- aggregate(df$bodywt, list(df$order), mean)
+avg_bodywt_order
+
+avg_sleepREM_order <- aggregate(df$sleep_rem, list(df$order), mean)
+avg_sleepREM_order <- as.data.frame(avg_sleepREM_order)
+avg_sleepREM_order
+
+print(paste("Total NA(s) in whole file = ", sum(is.na(df))))
+
+for (j in seq_along(1:ncol(df)))
+{
+
+  print(paste("NA(s) in column ", j, " = ", sum(is.na(df[, j]))))
+}
+df
+
 ```
 
 
