@@ -76,13 +76,14 @@ var_dataset
 ```{r }
 url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/msleep_ggplot2.csv"
 
-filename <- "msleep_ggplot2.csv"
 
-if(!file.exists(fileName))
+
+if(!file.exists("msleep_ggplot2.csv"))
 {
   download.file(url, destfile = "msleep_ggplot2.csv",method = 'libcurl')
 }
-r <- read.csv(filename)
+
+r <- read.csv("msleep_ggplot2.csv")
 df <- data.frame(r)
 
 avg_bodywt_genus <- aggregate(df$bodywt, list(df$genus), mean)
@@ -113,6 +114,9 @@ df
 
 
 ```{r }
+
+### For a missing value of a certain group, we will use mean of that group.
+### Otherwise if there is a group of only one specie then we will use the overall mean
 
 ```
 
