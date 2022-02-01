@@ -1,7 +1,7 @@
 ---
 title: "Data Collection and Data Wrangling"
 author: "Abdul Majid"
-date: "February 2022"
+date: "February 1, 2022"
 output: html_document
 ---
 
