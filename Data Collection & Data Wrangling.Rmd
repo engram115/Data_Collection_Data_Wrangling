@@ -128,11 +128,6 @@ df
 
 
 ```{r }
-
-```
-
-
-```{r }
 ### end solution ###
 ```
 
@@ -143,7 +138,7 @@ df
 ### Question 1
 **Use the above dataset and perform the following tasks using any library from tidyverse:**  
 1. Filter results to print average REM sleep and average total sleep  for those animals who are carnivores and then for those who are primates.  
-2. Use the order column and "spread" it across the rest of the observations.  
+2. Use the order column and "spread" it across the rest of the observations.
 
 
 ```{r }
@@ -153,20 +148,37 @@ df
 
 ```{r }
 
-```
-
-
-```{r }
-
-```
-
-
-```{r }
+library('dplyr')
+library('tidyr')
+df
 
 ```
 
 
 ```{r }
+
+df %>% 
+  filter(order=="Primates") %>% 
+  select(order, sleep_total, sleep_rem)
+
+```
+
+
+```{r }
+
+df %>% 
+  filter(order=="Carnivora") %>% 
+  select(order, sleep_total, sleep_rem)
+
+```
+
+
+```{r }
+
+wide_DF <- df %>% spread(order, sleep_total) %>% select(-name, -genus, -vore, -conservation,
+                                                        -sleep_rem, -awake, -sleep_cycle, 
+                                                        -brainwt, -bodywt)
+head(wide_DF, 24)
 
 ```
 
